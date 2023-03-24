@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.475">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>main</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="main_files/libs/clipboard/clipboard.min.js"></script>
+<script src="main_files/libs/quarto-html/quarto.js"></script>
+<script src="main_files/libs/quarto-html/popper.min.js"></script>
+<script src="main_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="main_files/libs/quarto-html/anchor.min.js"></script>
+<link href="main_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="main_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="main_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="main_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="main_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="predicting-mixed-martial-arts-fight-outcomes-using-machine-learning" class="level1">
+<h1>Predicting Mixed Martial Arts Fight Outcomes Using Machine Learning</h1>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Mixed Martial Arts (MMA) is a combat sport that has recently seen a rapid gain in popularity the last few years. With this increase in traction, there has been a greater desire to predict the outcomes of MMA fights by sports fans and gamblers alike. But predicting the winner of an MMA fight is challenging because there are numerous physical, technical, and psychological factors that can impact a fighter’s performance in a fight, some of which are not quantifiable (<code>https://cs229.stanford.edu/proj2013/Ho-DoesMMAMathWorkAStudyonSportsPredictionAppliedtoMixedMartialArts.pdf</code>).</p>
+<p>I have been a fan of the sport since 2018 and one thing that I’ve noticed is the increase in gambling advertisments in the sport, especially in the UFC, the largest MMA promotion in the world. Prior researchers have taken on the challenge of predicting the outcomes of UFC fights and achieved accuracies as high as 62.6% (<code>https://cs229.stanford.edu/proj2019aut/data/assignment_308875_raw/26426025.pdf</code>). With my background in data science, I hope to build a model that can predict the winners of UFC fights with reasonable accuracy.</p>
+</section>
+<section id="specific-aims" class="level2">
+<h2 class="anchored" data-anchor-id="specific-aims">Specific Aims</h2>
+<p>Can a machine learning model predict UFC fight winners more accurately than betting odds can?</p>
+<p>For every research question, it’s important to have baseline of comparison. Here, the percentage of fights where the fighter who wins was also the betting favorite can be the baseline value.</p>
+<p>This is important for sports betting companies because if a new model is developed such that it outperforms their existing models, then their business is in jeaporday; they could lose a lot of money! Progress in this field will help sports books “develop strategies [to] accurately determine how teams or players will perform … [and] produce relevant and targeted bet suggestions” (<code>https://txodds.net/insights/ai-and-machine-learning-in-sports-betting/#:~:text=The%20machine%20learning%20that%20produces,relevant%20and%20targeted%20bet%20suggestions</code>).</p>
+<p>Furthermore, not a lot of development has been made in predicting MMA fights because it is still a relatively young sport and there is not as much interest compared to the NFL, for instance (<code>https://cs229.stanford.edu/proj2013/Ho-DoesMMAMathWorkAStudyonSportsPredictionAppliedtoMixedMartialArts.pdf</code>). Thus, there is much to be done in this field and this research project is a step toward that direction.</p>
+</section>
+<section id="data-description" class="level2">
+<h2 class="anchored" data-anchor-id="data-description">Data Description</h2>
+<p>The data that will be used for this paper contains 4896 UFC fights from 2010 to 2021. The data can be found on Kaggle as the “Ultimate UFC Dataset”. The dataset is highly reputable with a usability score of 9.12/10 and is sourced from 3 databases: ufcstats.com, bestfightodds.com, and kaggle.com/martj42/ufc-rankings. Each row in the dataset represents a fight; each fight in the dataset contains corresponding statistics about both of the fighters’ physical attributes, past UFC performances, and betting odds. In total, there are 119 features, or columns, that describe the fighters and the fight itself. Additionally, this dataset is updated weekly, so this model can constantly be fed additional data and hopefully learn from both past and present instances.</p>
+</section>
+<section id="research-designmethodsschedule" class="level2">
+<h2 class="anchored" data-anchor-id="research-designmethodsschedule">Research Design/Methods/Schedule</h2>
+<p>A baseline will by established by calculating the percentage of fighters, who were betting favorites, that won. Since the dataset contains a large number of features, tree based models, such as a decision tree, will be explored because they handle high dimensionalty data well (<code>https://cs229.stanford.edu/proj2019aut/data/assignment_308875_raw/26426025.pdf</code>). But since decision trees are prone to overfitting, a random forest model will be tested as well because a study in 2019 showed that random forest works well with a mixture of categorical and numerical variables, which is what the data that will be used is composed of (<code>https://towardsdatascience.com/understanding-random-forest-58381e0602d2</code>). Continuing with tree based models, a gradient boosting machine model will also be attempted in this paper because they can avoid over-fitting when utilized with cross-validation and provide lots of flexibility with hyper-parameter tuning (<code>http://uc-r.github.io/gbm_regression</code>). Finally, after establishing baseline accuracies using the above models, they will be hypertuned to hopefully produce a higher validation accuracy. These methods enable us to construct machine learning models using features of the fighters and the fight to effectively predict the outcomes of those fights.</p>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>I expect that my models will be either less accurate or about as accurate as the betting odds average because betting odds should, in theory, be the best prediction available. Given this assumption, I want to build a model that can either match or exceed the prediction power of betting odds by corroborating prior results from studies on this topic. My work has the potential to introduce new machine learning techniques to preparing, processing, and modeling MMA features; and if it’s really good, improve the models used by sports bookies. If the investigation is not what I expected then there may be a flaw in my technique or it is simple ignorance to more advanced concepts and methodologies that can better explain the data.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Sports betting is huge, but only in the big sports like the NFL and NBA. MMA is a newer sport that is still growing its fanbase. This has resulted in a lack of interest in developing machine learning techniques to predict MMA fight outcomes. This paper seeks to develop a model that can match or rival the predictive capability of betting odds by using features from historical UFC fights. The purpose of this paper is not to develop new techniques but to corroborate prior results from studies related to this topic.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
