@@ -1,0 +1,42 @@
+---
+jupyter: python3
+---
+
+# Predicting Mixed Martial Arts Fight Outcomes Using Machine Learning
+
+## Introduction
+
+Mixed Martial Arts (MMA) is a combat sport that has recently seen a rapid gain in popularity the last few years. With this increase in traction, there has been a greater desire to predict the outcomes of MMA fights by sports fans and gamblers alike. But predicting the winner of an MMA fight is challenging because there are numerous physical, technical, and psychological factors that can impact a fighter's performance in a fight, some of which are not quantifiable (`https://cs229.stanford.edu/proj2013/Ho-DoesMMAMathWorkAStudyonSportsPredictionAppliedtoMixedMartialArts.pdf`). 
+
+
+I have been a fan of the sport since 2018 and one thing that I've noticed is the increase in gambling advertisments in the sport, especially in the UFC, the largest MMA promotion in the world. Prior researchers have taken on the challenge of predicting the outcomes of UFC fights and achieved accuracies as high as 62.6% (`https://cs229.stanford.edu/proj2019aut/data/assignment_308875_raw/26426025.pdf`). With my background in data science, I hope to build a model that can predict the winners of UFC fights with reasonable accuracy.
+
+## Specific Aims
+
+Can a machine learning model predict UFC fight winners more accurately than betting odds can?
+
+For every research question, it's important to have baseline of comparison. Here, the percentage of fights where the fighter who wins was also the betting favorite can be the baseline value. 
+
+This is important for sports betting companies because if a new model is developed such that it outperforms their existing models, then their business is in jeaporday; they could lose a lot of money! Progress in this field will help sports books "develop strategies [to] accurately determine how teams or players will perform ... [and] produce relevant and targeted bet suggestions" (`https://txodds.net/insights/ai-and-machine-learning-in-sports-betting/#:~:text=The%20machine%20learning%20that%20produces,relevant%20and%20targeted%20bet%20suggestions`).
+
+Furthermore, not a lot of development has been made in predicting MMA fights because it is still a relatively young sport and there is not as much interest compared to the NFL, for instance (`https://cs229.stanford.edu/proj2013/Ho-DoesMMAMathWorkAStudyonSportsPredictionAppliedtoMixedMartialArts.pdf`). Thus, there is much to be done in this field and this research project is a step toward that direction.
+
+## Data Description
+
+The data that will be used for this paper contains 4896 UFC fights from 2010 to 2021. The data can be found on Kaggle as the "Ultimate UFC Dataset". The dataset is highly reputable with a usability score of 9.12/10 and is sourced from 3 databases: ufcstats.com, bestfightodds.com, and kaggle.com/martj42/ufc-rankings. Each row in the dataset represents a fight; each fight in the dataset contains corresponding statistics about both of the fighters' physical
+attributes, past UFC performances, and betting odds. In total, there are 119 features, or
+columns, that describe the fighters and the fight itself. Additionally, this dataset is updated weekly, so this model can constantly be fed additional data and hopefully learn from both past and present instances.
+
+## Research Design/Methods/Schedule
+
+A baseline will by established by calculating the percentage of fighters, who were betting favorites, that won. Since the dataset contains a large number of features, tree based models, such as a decision tree, will be explored because they handle high dimensionalty data well (`https://cs229.stanford.edu/proj2019aut/data/assignment_308875_raw/26426025.pdf`). But since decision trees are prone to overfitting, a random forest model will be tested as well because a study in 2019 showed that random forest works well with a mixture of categorical and numerical variables, which is what the data that will be used is composed of (`https://towardsdatascience.com/understanding-random-forest-58381e0602d2`). Continuing with tree based models, a gradient boosting machine model will also be attempted in this paper because they can avoid over-fitting when utilized with cross-validation and provide lots of flexibility with hyper-parameter tuning (`http://uc-r.github.io/gbm_regression`). Finally, after establishing baseline accuracies using the above models, they will be hypertuned to hopefully produce a higher validation accuracy. These methods enable us to construct machine learning models using features of the fighters and the fight to effectively predict the outcomes of those fights.
+
+## Discussion
+
+I expect that my models will be either less accurate or about as accurate as the betting odds average because betting odds should, in theory, be the best prediction available. Given this assumption, I want to build a model that can either match or exceed the prediction power of betting odds by corroborating prior results from studies on this topic. My work has the potential to introduce new machine learning techniques to preparing, processing, and modeling MMA features; and if it's really good, improve the models used by sports bookies. If the investigation is not what I expected then there may be a flaw in my technique or it is simple ignorance to more advanced concepts and methodologies that can better explain the data.
+
+## Conclusion
+
+Sports betting is huge, but only in the big sports like the NFL and NBA. MMA is a newer sport that is still growing its fanbase. This has resulted in a lack of interest in developing machine learning techniques to predict MMA fight outcomes. This paper seeks to develop a model that can match or rival the predictive capability of betting odds by using features from historical UFC fights. The purpose of this paper is not to develop new techniques but to corroborate prior results from studies related to this topic.
+
+
