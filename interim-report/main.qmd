@@ -1,0 +1,60 @@
+## Mixed Martial Arts Fight Prediction
+
+Sports betting has existed for thousands of years across diverse cultures. The concept of wagering a small amount of money to potentially gain a larger prize of money is enticing. With the popularity of sports these days, there has been an increased desire to predict sport outcomes. But, winners are inherently tricky to predict because there are a plethora of factors that may affect the outcome. Mixed martial arts is no exception.
+
+### Motive?
+
+Currently, betting odds are the best indicator of the outcome of a fight. They are calculated by sportsbooks with the main goal of receiving equal money on both sides of a bet. Put more simply, sportsbooks calculate the odds so that they will earn money no matter the final result.
+
+I want to know if a machine learning model can be more accurate than betting odds at predicting the winner of a mma fight.
+
+### Context
+
+MMA is more complicated to predict than other sports, like American Football, because there is more randomness and intangible factors that are not quantifiable. For instance, "a last minute comeback from behind is a rare, memorable event" in traditional sports. But in MMA, a single punch or kick can turn the tides of a fight within a matter of seconds. Furthermore, if a fighter is not knocked unconscious, submitted, or stopped early by the referee for some reason, then the fight outcome will be determined by a panel of three judges, sanctioned by the state in which the fight resides. Each judge gives both fighters a score on a scale from zero to ten at the end of each round and tallies them up at the end; the fighter with the highest score wins, or if its tied, a draw is declared. The judges base their score on many factors: the number of significant strikes landed on an opponent, total number of take downs, and more.
+
+There are numerous instances of a fighter going the distance and clearly winning the fight in the eyes of fans, analysts, and gamblers alike. But the judges, for reasons that are unknown, give their opponent the victory. This judging process introduces randomness into predicting MMA fights because a fighter could be predicted to win on paper based on their attributes, and indeed "win" a close fight, but are not given the win because of the judges decisions.
+
+Additionally, followers of this sport know that some fighters are susceptible to being knocked out while others are not, this is known as having a "chin". Similarly, some fighters can falter when they take a lot of damage but others shrug it off and continue fighting like the first round just started, this is known as having "heart". These factors make MMA fascinating to watch, but they are impossible to quantify and model.
+
+Source: http://cs229.stanford.edu/proj2013/Ho-
+DoesMMAMathWorkAStudyonSportsPredictionAppliedtoMixedMartialArts.pdf
+
+### Has this been done before?
+
+Yes! Previous attempts at predicting UFC fight outcomes yielded an accuracy as high as 68.5%
+
+Source: http://arno.uvt.nl/show.cgi?fid=156304
+
+### Data
+
+The data that will be used contains 4896 UFC fights from 2010 to 2021. Each fight in the dataset contains corresponding statistics about both of the fighters physical attributes, past UFC performances, and betting odds. In total, there are 119 features, or columns, that can be used for building a model. This dataset is called the "Ultimate UFC Dataset" and it was downloaded from Kaggle.
+
+### Methods
+
+A baseline was established by calculating the percentage of fighters, who were betting favorites, that won.
+
+After a baseline had been established, the next step was to prepare the dataset for machine learning. Cross-validated recursive feature elimination was used to pick the best features from the dataset by recursively training a given model, in this case random forest, and removing the least impact features. The process terminates when the subset of features no longer changes, which at this point, the set of features returned is the best subset of features based on the cross-validation score of the model.
+
+A decision tree, random forest, and XGBoost models were trained using the pre-processed dataset and the selected features in an attempt to find the best performing model.
+
+Hyper-parameter optimization was then performed on the baseline models in an effort to further improve validation accuracy.
+
+### Results
+
+I measured the success of the models based on their accuracy, where accuracy is defined as the degree to which the model classifies all the fights properly.
+
+The best model was the random forest model, which had an accuracy of 65.3%
+
+The misclassification of fighter victories is detrimental because potential users of this model to inform their bets will suffer losses if the fighter they bet on doesn't win the fight. Thus, the accuracy, or the ability of the model to correct classify "Red" and "Blue" victories, should be maximized.
+
+For this model, the accuracy is at a reasonably high value of 65.3%, which is better than both randomly guessing, a 50% success rate, and using the betting odds average of 64.93%
+
+### Conclusion
+
+Predicting MMA fight outcomes will be an on-going challenge as new machine learning techniques and models are developed to challenge prior findings. It will be increasingly more difficult to gain a higher accuracy because ultimately MMA has many intangible and random factors that cannot be quantified.
+
+This study did not create any new features from the existing features, which may be beneficial to improving model performance.
+
+Furthermore, the dataset used to train the models in this paper is small (n = 4,896) because that is the total number of fights that have occurred since the inception of the UFC. The key to getting better, more robust performance is using a dataset that is balanced and sufficiently large. This ensures that the model can discover the underlying trends and patterns of the data and make better class separation.
+
+Nevertheless, the results of this project indicate that a machine learning model is as effective as, or more effective than, betting odds at predicting UFC fight outcomes, especially when the data is properly pre-processed, desirable features are selected, and the most optimal model is used.
